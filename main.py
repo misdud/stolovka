@@ -27,7 +27,7 @@ def clear_table():
             for item in tree.get_children():
                 tree.delete(item)
 
-            # обнуляе Итоги
+            # обнуляv Итоги
             result['text'] = f"Итого: 0.0 р."
     else:
         messagebox.showinfo('Удаление таблицы', 'Разве! Таблица сейчас пуста :-))')
@@ -128,14 +128,13 @@ with open(ICON_PATH, "wb") as icon_file:
 
 root = Tk()
 root.title("Копейка 2.0  -=ITVokirtep=-")
-root.geometry("570x460")
-root.minsize(570,460)
-root.maxsize(670,560)
+root.geometry("557x460")
+root.resizable(False, False)
 root.iconbitmap(default=ICON_PATH)
 
 ttk.Style().configure("TLabel",  font="helvetica 10", foreground="#004D40", padding=5, background="sky blue")
-ttk.Style().configure("TButton",  font="helvetica 9", foreground="#004D40", padding=5)
-ttk.Style().configure("TEntry",  font="helvetica 9", foreground="#004D40", padding=5)
+ttk.Style().configure("TButton",  font="helvetica 10", foreground="#004D40", padding=5)
+ttk.Style().configure("TEntry",  font="helvetica 10", foreground="#004D40", padding=5)
 
 
 frame_top = LabelFrame(root)
@@ -143,15 +142,15 @@ frame_top = LabelFrame(text="Внесение сумм")
 
 
 name_label = ttk.Label(frame_top, text="Введите cумму затрат:")
-name_label.grid(row=0,column=1, padx=5)
+name_label.grid(row=0,column=1, padx=0, pady=(15,0), sticky='e')
 
-order = ttk.Entry(frame_top, width=10)
+order = ttk.Entry(frame_top, width=10, font='Verdans, 10')
 order.bind("<Return>", insert_data_bottom)
-order.grid(row=0, column=2, padx=2)
+order.grid(row=0, column=2, padx=0,  pady=(15,0),sticky='w')
 
 
 btn_add = ttk.Button(frame_top, text="Добавить", command=insert_data) # создаем кнопку из пакета ttk
-btn_add.grid(row=0, column=3, ipadx=15, sticky='nswe')
+btn_add.grid(row=0, column=3, ipadx=1, padx=(1,1), pady=(15,0), sticky='w')
 
 
 # для фото если рядом есть то берём, иначе пропускаем
@@ -173,7 +172,7 @@ except Exception:
 selected_zatrata = StringVar(value="stolovka") # по умолчанию будет выбран элемент с value=stolovka
 
 chboks_stolovka = ttk.Radiobutton(frame_top, text="Столовая", value="stolovka", variable=selected_zatrata)
-chboks_stolovka.grid( row=1, columnspan=3, padx=5, pady=[5, 0], sticky=W )
+chboks_stolovka.grid( row=1, columnspan=3, padx=(23, 0), pady=[5, 0], sticky=W )
 
 chboks_bufet = ttk.Radiobutton(frame_top, text="Буфет", value="bufet", variable=selected_zatrata)
 chboks_bufet.grid(row=1, columnspan=3, padx=110, pady=[5, 0], sticky=W )
